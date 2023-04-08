@@ -4,9 +4,10 @@ on:
     - main
   workflow_dispatch:
 
+permissions:
+  id-token: 'write'
+
 jobs:
-  permissions:
-    id-token: 'write'
   build:
     name: build
     runs-on: ubuntu-latest
