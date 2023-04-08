@@ -17,3 +17,9 @@ jobs:
         run: |
           npm ci
           npm run build
+          - name: Upload artifact
+      - name: Deploy
+        uses: actions/upload-artifact@v3
+        with:
+          path: "dist/"
+          if-no-files-found: error
