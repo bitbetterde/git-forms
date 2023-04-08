@@ -13,11 +13,10 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version-file: '.nvmrc'
-      - name: npm install, build and test
+      - name: npm install and build
         run: |
           npm ci
           npm run build
-          - name: Upload artifact
       - name: Deploy
         uses: actions/upload-artifact@v3
         with:
