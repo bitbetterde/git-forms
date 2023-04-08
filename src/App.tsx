@@ -1,5 +1,6 @@
 import type { InputElementState } from "./types/InputElementState";
 import DynamicForm from "./DynamicForm";
+import { useEffect, useState } from "react";
 
 const createGitHubIssue = (title: string, content: unknown) => {
   const body = JSON.stringify({ title, body: content });
@@ -21,14 +22,26 @@ const createGitHubIssue = (title: string, content: unknown) => {
     .catch((err) => console.error(err));
 };
 
+const STORAGE_KEY = "git-form";
+
 function App() {
-  const value: InputElementState[] = [];
+  const [value, setValue] = useState<InputElementState[]>([]);
+
+  useEffect(() => {
+    const loadedRaw = localStorage.getItem(STORAGE_KEY);
+    if (loadedRaw) {
+      const loaded: InputElementState[] = JSON.parse(loadedRaw);
+      console.log("Loading from Storage", loaded);
+      loaded && setValue(loaded);
+    }
+  }, []);
 
   return (
     <main>
       <h1 className="text-2xl font-bold my-6">Build your Git form</h1>
       <DynamicForm
-        onSubmit={(formData) => {
+        onSubmit={(formData, event) => {
+          event.preventDefault();
           console.log("Saving to localStorage");
           localStorage.setItem("git-form", JSON.stringify(formData));
         }}

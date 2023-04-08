@@ -33,6 +33,10 @@ const DynamicForm: React.FC<Props> = ({ value, onSubmit }: Props) => {
   const [formData, setFormData] = useState<Array<InputElementState>>(value);
 
   useEffect(() => {
+    Boolean(value.length) && setFormData(value);
+  }, [value]);
+
+  useEffect(() => {
     console.log(formData);
   }, [formData]);
 

@@ -8,9 +8,17 @@ interface Props {
   onChange: (newValue: InputElementState) => void;
 }
 
-const InputElement: React.FC<Props> = ({ id, onClickDelete, value, onChange }: Props) => {
+const InputElement: React.FC<Props> = ({
+  id,
+  onClickDelete,
+  value,
+  onChange,
+}: Props) => {
   return (
-    <div draggable className="border px-4 py-2 rounded-md grid grid-cols-12 gap-x-2 gap-y-8">
+    <div
+      draggable
+      className="border px-4 py-2 rounded-md grid grid-cols-12 gap-x-2 gap-y-8"
+    >
       <div className="col-span-3">
         <label
           htmlFor="typeInput"
@@ -19,14 +27,24 @@ const InputElement: React.FC<Props> = ({ id, onClickDelete, value, onChange }: P
           Type
         </label>
         <div className="mt-2">
-          <input
+          <select
+            name="typeInput"
+            id="typeInput"
+            disabled
+            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 disabled:bg-gray-100"
+          >
+            <option value="text">Text</option>
+            <option value="number">Number</option>
+            <option value="textarea">Textarea</option>
+          </select>
+          {/* <input
             disabled
             name="typeInput"
             id="typeInput"
             type="text"
             value="Text"
             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 disabled:bg-gray-100"
-          />
+          /> */}
         </div>
       </div>
 
